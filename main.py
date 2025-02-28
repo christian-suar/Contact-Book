@@ -16,15 +16,17 @@ csv_file = input("Enter the CSV file name (with .csv extension): ")
 print()
 
 try:
-    f = open(csv_file, "r")
+    f = open(csv_file, "x")
 except FileExistsError:
-
+    print("File already exists. Opening the file.")
 
 
 
 def read_contacts():
-    f = open("story.txt", "r")
-    print(f.read())
+    with open(csv_file, "r") as f:
+        reader = csv.reader(f)
+        for row in reader:
+            print(row)
 
 def write_contacts():
     f = open("story.txt", "w")
